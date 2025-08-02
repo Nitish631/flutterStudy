@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # wigets_and_layouts
 
 A new Flutter project.
@@ -14,3 +15,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# flutterStudy
+this is for studying the flutter
+<br>
+Author: Nitish 
+>>>>>>> 0bb9ac6ca5e503840f38f9ec3aad511ed41a404c

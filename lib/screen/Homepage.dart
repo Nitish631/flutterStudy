@@ -7,8 +7,8 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Catlog App"),
-        backgroundColor: Theme.of(context).primaryColor,
+        title: Text("Catlog App",),
+        // backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Center(
         child: Container(

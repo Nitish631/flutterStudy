@@ -15,17 +15,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
         brightness: Brightness.light,
         textTheme: GoogleFonts.latoTextTheme(),
-        // useMaterial3: false
+        useMaterial3: false
         ),
       // darkTheme: ThemeData(
       //   brightness: Brightness.dark
       // ),
       initialRoute: MyRoutes.homeRoute,
       routes: {
-        "/":(context)=>LoginPage(),
+        // "/":(context)=>LoginPage(),
         MyRoutes.homeRoute:(context)=>Homepage(),
         MyRoutes.loginRoute:(context)=>LoginPage()
       }

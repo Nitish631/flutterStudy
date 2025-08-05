@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:wigets_and_layouts/models/catalouge.dart';
 import 'package:wigets_and_layouts/widgets/drawer.dart';
+import 'package:wigets_and_layouts/widgets/item_widgets.dart';
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final dummyList=List.generate(30,(index)=>CatalougeModel.Items[0]);
     return Scaffold(
       appBar: AppBar(
         title: Text("Catlog App",),
@@ -24,12 +27,14 @@ class Homepage extends StatelessWidget {
       //     color: Colors.red,
       //   ),
       // ),
-      body: Center(
-        child: Container(
-          // child: Text(context.runtimeType.toString()),
-          child: Text("Welcome to the 30 days flutter program."),
+      body:ListView.builder(
+        // itemCount: CatalougeModel.Items.length,
+        itemCount: dummyList.length,
+        itemBuilder:(context,index){
+          // return ItemWidgets(item: CatalougeModel.Items[index],);
+          return ItemWidgets(item: dummyList[index]);
+        }
         ),
-      ),
       drawer: MyDrawer(),
     );
   }

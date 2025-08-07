@@ -1,13 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:wigets_and_layouts/models/catalouge.dart';
 import 'package:wigets_and_layouts/widgets/drawer.dart';
 import 'package:wigets_and_layouts/widgets/item_widgets.dart';
-class Homepage extends StatelessWidget {
+import 'dart:convert';
+class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
   @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadData();
+  }
+  Future<void> loadData() async {
+    await Future.delayed(Duration(seconds: 2));
+  final catalougeJson = await rootBundle.loadString("assets/files/catalouge.json");
+  final decodedData = jsonDecode(catalougeJson);
+  final productsData = decodedData["products"];
+
+  setState(() {
+    CatalougeModel.items = List.from(productsData)
+        .map<Item>((item) => Item.fromMap(item))
+        .toList();
+  });
+}
+  @override
   Widget build(BuildContext context) {
-    final dummyList=List.generate(30,(index)=>CatalougeModel.Items[0]);
+    // debugPrint("BUILDING WIDGETS WITH ${CatalougeModel.Items.length} ITEMS");
     return Scaffold(
       appBar: AppBar(
         title: Text("Catlog App",),
@@ -27,14 +52,19 @@ class Homepage extends StatelessWidget {
       //     color: Colors.red,
       //   ),
       // ),
-      body:ListView.builder(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child:(CatalougeModel.items!=null&&CatalougeModel.items.isNotEmpty)? ListView.builder(
         // itemCount: CatalougeModel.Items.length,
-        itemCount: dummyList.length,
+        itemCount: CatalougeModel.items.length,
         itemBuilder:(context,index){
           // return ItemWidgets(item: CatalougeModel.Items[index],);
-          return ItemWidgets(item: dummyList[index]);
+          return ItemWidgets(item: CatalougeModel.items[index]);
         }
-        ),
+        ):Center(
+          child: CircularProgressIndicator(),
+        )
+      ),
       drawer: MyDrawer(),
     );
   }
